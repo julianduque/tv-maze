@@ -1,0 +1,26 @@
+{
+  "name": "tv-maze",
+  "version": "1.0.0",
+  "description": "A tvmaze API Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*-test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julianduque/tv-maze.git"
+  },
+  "keywords": [
+    "tvmaze"
+  ],
+  "author": "Julian Duque <julianduquej@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/julianduque/tv-maze/issues"
+  },
+  "homepage": "https://github.com/julianduque/tv-maze#readme",
+  "devDependencies": {
+    "tap-spec": "^4.1.1",
+    "tape": "^4.2.2"
+  }
+}
