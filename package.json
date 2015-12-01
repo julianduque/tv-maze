@@ -21,8 +21,12 @@
   },
   "homepage": "https://github.com/julianduque/tv-maze#readme",
   "devDependencies": {
+    "nock": "^3.3.2",
     "standard": "^5.4.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.2.2"
+  },
+  "dependencies": {
+    "client-request": "^1.0.1"
   }
 }
