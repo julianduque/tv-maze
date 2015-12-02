@@ -69,7 +69,7 @@ test('should search single show', function (t) {
 
   client.search('lost', { single: true }, function (err, show) {
     t.error(err, 'should not be an error')
-    // t.ok(Object.isObject(show), 'should be a single element') // No sé como se validaría que en lugar de Array es un Objeto
+    t.equals(typeof show, 'object', 'should be a single element')
     t.equals(show.name, 'Lost', 'should retrieve a show name')
     t.end()
   })
