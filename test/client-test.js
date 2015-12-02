@@ -50,7 +50,7 @@ test('should search shows', function (t) {
     .query({ q: 'limitless' })
     .reply(200, [{ name: 'Limitless' }])
 
-  client.search('limitless', {}, function (err, shows) {
+  client.search('limitless', function (err, shows) {
     t.error(err, 'should not be an error')
     t.ok(Array.isArray(shows), 'should be an array')
     t.equals(shows[0].name, 'Limitless', 'should retrieve a show name')
