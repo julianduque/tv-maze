@@ -50,10 +50,29 @@ test('should search shows', function (t) {
     .query({ q: 'limitless' })
     .reply(200, [{ name: 'Limitless' }])
 
-  client.search('limitless', function (err, shows) {
+  client.search('limitless', undefined, function (err, shows) {
     t.error(err, 'should not be an error')
     t.ok(Array.isArray(shows), 'should be an array')
     t.equals(shows[0].name, 'Limitless', 'should retrieve a show name')
+    t.end()
+  })
+})
+
+test('should search a single show', function (t) {
+  var client = tvmaze.createClient({ endpoint: endpoint })
+  t.equals(typeof client.search, 'function', 'should be a function')
+
+  nock(endpoint)
+    .get('/singlesearch/shows')
+    .query({ q: 'limitless' })
+    .reply(200, { name: 'Limitless' })
+
+  var options = {single: true}
+  client.search('limitless', options, function (err, show) {
+    t.error(err, 'should not be an error')
+    t.ok(show instanceof Object, 'should be an instance of Object')
+    t.ok(options !== undefined, 'should be defined')
+    t.equals(show.name, 'Limitless', 'should retrieve a show name')
     t.end()
   })
 })
