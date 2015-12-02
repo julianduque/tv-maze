@@ -71,7 +71,6 @@ test('should search a single show', function (t) {
   client.search('limitless', options, function (err, show) {
     t.error(err, 'should not be an error')
     t.ok(show instanceof Object, 'should be an instance of Object')
-    t.ok(options !== undefined, 'should be defined')
     t.equals(show.name, 'Limitless', 'should retrieve a show name')
     t.end()
   })
