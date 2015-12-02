@@ -76,3 +76,52 @@ test('should fail if not query is passed', function (t) {
     t.end()
   })
 })
+
+test('should search a show', function (t) {
+  var client = tvmaze.createClient({endpoint: endpoint})
+  t.equals(typeof client.search, 'function', 'should be a function')
+
+  nock(endpoint)
+    .get('/search/show')
+    .query({q: 'lost'})
+    .reply(200, {name: 'lost'})
+
+  client.search('lost', {single: true}, function (err, show) {
+    t.error(err, 'should not be an error')
+    t.equals(show.toString(), '[object Object]', 'should by an object')
+    t.equals(show.name, 'lost', 'should retrieve a show name')
+    t.end()
+  })
+})
+
+test('should search a shows when the single parameter is false', function (t) {
+  var client = tvmaze.createClient({endpoint: endpoint})
+  t.equals(typeof client.search, 'function', 'should be a function')
+
+  nock(endpoint)
+    .get('/search/shows')
+    .query({q: 'The Simpsons'})
+    .reply(200, [{name: 'The Simpsons'}])
+
+  client.search('The Simpsons', {single: false}, function (err, shows) {
+    t.error(err, 'should not be an error')
+    t.ok(Array.isArray(shows), 'should be an array')
+    t.equals(shows[0].name, 'The Simpsons', 'should retrieve a show name')
+    t.end()
+  })
+})
+
+test('should fail if not exist a single variable in the JSON parameter', function (t) {
+  var client = tvmaze.createClient({endpoint: endpoint})
+  t.equals(typeof client.search, 'function', 'should be a function')
+
+  nock(endpoint)
+    .get('/search/shows')
+    .query({q: 'The Simpsons'})
+    .reply(200, [{name: 'The Simpsons'}])
+
+  client.search('The Simpsons', {name: false}, function (err, shows) {
+    t.ok(err, 'should be an error')
+    t.end()
+  })
+})
