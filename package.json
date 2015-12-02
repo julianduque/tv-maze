@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
-    "coverage": "istanbul cover tape -- test/*-test.js",
+    "coverage": "istanbul cover node_modules/tape/bin/tape -- test/*-test.js",
     "test": "npm run lint && tape test/*-test.js | tap-spec"
   },
   "repository": {
