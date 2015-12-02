@@ -25,6 +25,10 @@ client.search('lost', function (err, shows) {
 client.search('lost', { single: true }, function (err, show) {
   // do something with show
 })
+
+client.show(2473, function (err, show) {
+  // do something with show
+})
 ```
 
 ## License MIT
