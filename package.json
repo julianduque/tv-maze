@@ -29,6 +29,7 @@
     "tape": "^4.2.2"
   },
   "dependencies": {
-    "client-request": "^1.0.1"
+    "client-request": "^1.0.1",
+    "querystring": "^0.2.0"
   }
 }
