@@ -26,7 +26,7 @@ client.search('lost', { single: true }, function (err, show) {
   // do something with show
 })
 
-client.searchById(1, function (err, show) {
+client.show(1, function (err, show) {
 	//do something with show
 })
 ```
