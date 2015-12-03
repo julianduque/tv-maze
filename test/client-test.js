@@ -128,13 +128,13 @@ test('should fail if not exist a single variable in the JSON parameter', functio
 
 test('should search a show Object', function (t) {
   var client = tvmaze.createClient({endpoint: endpoint})
-  t.equals(typeof client.searchById, 'function', 'should be a function')
+  t.equals(typeof client.show, 'function', 'should be a function')
 
   nock(endpoint)
     .get('/search/show/1')
     .reply(200, {_id: 1, name: 'lost'})
 
-  client.searchById(1, function (err, show) {
+  client.show(1, function (err, show) {
     t.error(err, 'should not be an error')
     t.equals(show.toString(), '[object Object]', 'should be a JSON object')
     t.equals(typeof show._id, 'number', 'the _id variable should be a number')
