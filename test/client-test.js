@@ -26,6 +26,23 @@ test('should fail with unknown endpoint', function (t) {
   })
 })
 
+test('should fetch a show by id', function (t) {
+  var client = tvmaze.createClient({ endpoint: endpoint })
+  t.equals(typeof client.show, 'function', 'should be a function')
+
+  nock(endpoint)
+    .get('/shows/2473')
+    .reply(200, { id: 2473, name: 'Limitless' })
+
+  client.show(2473, function (err, show) {
+    t.error(err, 'should not be an error')
+    t.ok(show, 'should exist')
+    t.equals(show.id, 2473)
+    t.equals(show.name, 'Limitless')
+    t.end()
+  })
+})
+
 test('should list shows', function (t) {
   var client = tvmaze.createClient({ endpoint: endpoint })
   t.equals(typeof client.shows, 'function', 'should be a function')
