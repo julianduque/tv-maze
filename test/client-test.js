@@ -131,7 +131,7 @@ test('should search a show Object', function (t) {
   t.equals(typeof client.show, 'function', 'should be a function')
 
   nock(endpoint)
-    .get('/search/show/1')
+    .get('/show/1')
     .reply(200, {_id: 1, name: 'lost'})
 
   client.show(1, function (err, show) {
