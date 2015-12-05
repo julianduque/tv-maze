@@ -93,3 +93,18 @@ test('should fail if not query is passed', function (t) {
     t.end()
   })
 })
+
+test('should show single search', function (t) {
+  var client = tvmaze.createClient({ endpoint: endpoint })
+
+  nock(endpoint)
+    .get('/singlesearch/shows')
+    .query({ q: 'lost' })
+    .reply(200, { name: 'lost' })
+
+  client.search('lost', { single: true }, function (err, show) {
+    t.error(err, 'should not be an error')
+    t.equals(typeof show, 'object', 'should be a object')
+    t.end()
+  })
+})
