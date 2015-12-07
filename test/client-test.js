@@ -20,7 +20,7 @@ test('should fail with unknown endpoint', function (t) {
     .get('/foo')
     .reply(404)
 
-  client._request('/foo', 'GET', null, function (err, body) {
+  client._request('/foo', 'GET', function (err, body) {
     t.ok(err, 'request failed')
     t.end()
   })
@@ -87,7 +87,7 @@ test('should fail if not query is passed', function (t) {
       status: 400
     })
 
-  client._request('/search/shows', 'GET', null, function (err, res) {
+  client._request('/search/shows', 'GET', function (err, res) {
     t.ok(err, 'bad request error')
     t.notOk(res, 'reply should be null')
     t.end()
