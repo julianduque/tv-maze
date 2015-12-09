@@ -8,9 +8,6 @@
     "coverage": "istanbul cover tape -- test/*-test.js",
     "test": "npm run lint && tape test/*-test.js | tap-spec"
   },
-  "engines" : {
-    "node" : ">=4.2.3"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/julianduque/tv-maze.git"
