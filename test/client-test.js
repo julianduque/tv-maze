@@ -20,7 +20,7 @@ test('should fail with unknown endpoint', function (t) {
     .get('/foo')
     .reply(404)
 
-  client._request('/foo', 'GET', null, function (err, body) {
+  client._request('/foo', 'GET', function (err, body) {
     t.ok(err, 'request failed')
     t.end()
   })
@@ -75,6 +75,22 @@ test('should search shows', function (t) {
   })
 })
 
+test('should search only a single show', function (t) {
+  var client = tvmaze.createClient({ endpoint: endpoint })
+  t.equals(typeof client.search, 'function', 'should be a function')
+
+  nock(endpoint)
+    .get('/singlesearch/shows')
+    .query({ q: 'limitless' })
+    .reply(200, [{ name: 'Limitless' }])
+
+  client.singleSearch('limitless', function (err, show) {
+    t.error(err, 'should not be an error')
+    t.equals(show[0].name, 'Limitless', 'should retrieve a show name')
+    t.end()
+  })
+})
+
 test('should fail if not query is passed', function (t) {
   var client = tvmaze.createClient({ endpoint: endpoint })
 
@@ -87,7 +103,7 @@ test('should fail if not query is passed', function (t) {
       status: 400
     })
 
-  client._request('/search/shows', 'GET', null, function (err, res) {
+  client._request('/search/shows', 'GET', function (err, res) {
     t.ok(err, 'bad request error')
     t.notOk(res, 'reply should be null')
     t.end()
