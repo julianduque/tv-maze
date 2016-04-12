@@ -3,7 +3,7 @@ var nock = require('nock')
 var tvmaze = require('../')
 var Client = require('../lib/client')
 
-var endpoint = 'http://api.tvmaze.test'
+var endpoint = 'http://api.tvmaze.com'
 
 test('should create a client', function(t) {
     t.ok(tvmaze.createClient, 'should exist')
@@ -106,7 +106,33 @@ test('should show the cast of a show', function(t) {
     client.cast(175, function(err, cast) {
         t.error(err, 'should not be an error')
         t.ok(Array.isArray(cast), 'should be an array ')
-        t.equals(cast[0].person.name, 'Robin Wright', 'should retrive a names')
+        t.equals(cast[0].person.name, 'Robin Wright', 'should retrive a name')
         t.end()
     })
 })
+
+test('should show the episodes of a show', function(t) {
+    var client = tvmaze.createClient({ endpoint: endpoint })
+    t.equals(typeof client.episodes, 'function', 'should be a function')
+
+    nock(endpoint)
+        .get('/shows/175/episodes')
+        .reply(200, [{ name: 'Pilot' }])
+
+    client.episodes(175, function(err, episodes) {
+        t.error(err, 'should not be an error')
+        t.ok(Array.isArray(episodes), 'should be an array')
+        t.equals(episodes[0].name, 'Pilot', 'should retrieve a name')
+        t.end()
+    })
+})
+
+/*
+var client = tvmaze.createClient({ endpoint: endpoint })
+client.episodes(175, function(err, episodes) {
+    console.log(episodes.filter(function(a) {
+        return a.season == 1
+    }))
+ 
+})
+*/
