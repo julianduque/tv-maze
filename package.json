@@ -1,34 +1,33 @@
 {
-  "name": "tv-maze",
-  "version": "1.1.0",
-  "description": "A tvmaze API Client",
-  "main": "index.js",
-  "scripts": {
-    "lint": "standard",
-    "coverage": "istanbul cover tape -- test/*-test.js",
-    "test": "npm run lint && tape test/*-test.js | tap-spec"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/julianduque/tv-maze.git"
-  },
-  "keywords": [
-    "tvmaze"
-  ],
-  "author": "Julian Duque <julianduquej@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/julianduque/tv-maze/issues"
-  },
-  "homepage": "https://github.com/julianduque/tv-maze#readme",
-  "devDependencies": {
-    "istanbul": "^0.4.1",
-    "nock": "^3.3.2",
-    "standard": "^5.4.1",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.2.2"
-  },
-  "dependencies": {
-    "client-request": "^1.0.1"
-  }
+    "name": "tv-maze",
+    "version": "1.1.0",
+    "description": "A tvmaze API Client",
+    "main": "index.js",
+    "scripts": {
+        "coverage": "istanbul cover tape -- test/*-test.js",
+        "test": "tape test/*-test.js | tap-spec"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/julianduque/tv-maze.git"
+    },
+    "keywords": [
+        "tvmaze"
+    ],
+    "author": "Julian Duque <julianduquej@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/julianduque/tv-maze/issues"
+    },
+    "homepage": "https://github.com/julianduque/tv-maze#readme",
+    "devDependencies": {
+        "istanbul": "^0.4.1",
+        "nock": "^3.3.2",
+        "standard": "^5.4.1",
+        "tap-spec": "^4.1.1",
+        "tape": "^4.2.2"
+    },
+    "dependencies": {
+        "client-request": "^1.0.1"
+    }
 }
