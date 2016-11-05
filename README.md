@@ -18,12 +18,12 @@ client.shows(function (err, shows) {
   // do something with shows
 })
 
-client.search('lost', function (err, shows) {
+client.search('lost', { single: false }, function (err, shows) {
   // do something with shows
 })
 
 client.search('lost', { single: true }, function (err, show) {
-  // do something with show
+  // do something with a single show
 })
 
 client.show(2473, function (err, show) {
